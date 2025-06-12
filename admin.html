@@ -1,0 +1,11 @@
+پنل مدیریت پروژه‌ها body { font-family: sans-serif; direction: rtl; background-color: #f4f4f4; padding: 20px; } .login, .panel { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); } input, textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; } button { padding: 10px 20px; background: #333; color: white; border: none; border-radius: 5px; cursor: pointer; } .hidden { display: none; } 
+
+ورود به پنل
+
+ورود 
+
+افزودن پروژه جدید
+
+افزودن 
+
+const correctPassword = "farshid127"; // رمز عبور شما function login() { const input = document.getElementById("password").value; if(input === correctPassword) { document.getElementById("loginBox").classList.add("hidden"); document.getElementById("panelBox").classList.remove("hidden"); } else { document.getElementById("loginError").innerText = "رمز اشتباه است"; } } async function addProject() { const title = document.getElementById("title").value; const description = document.getElementById("description").value; const image = document.getElementById("image").value; const newProject = { title, description, image }; // بارگذاری داده فعلی از فایل JSON (فقط لوکالی کار می‌کند، روی گیت‌هاب نه) let data = []; try { const res = await fetch("data.json"); data = await res.json(); } catch (e) { console.log("No existing data.json or fetch error"); } data.push(newProject); const a = document.createElement('a'); const file = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'}); a.href = URL.createObjectURL(file); a.download = 'data.json'; a.click(); document.getElementById("successMsg").innerText = "پروژه با موفقیت ایجاد شد. فایل جدید data.json را در گیت‌هاب آپلود کنید."; } 
