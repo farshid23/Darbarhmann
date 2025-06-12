@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>نمونه‌کارها</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #f5c542;
+      font-family: "Vazir", sans-serif;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background-color: #1a1a1a;
+      border-bottom: 2px solid #f5c542;
+    }
+    h1 {
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .card {
+      background-color: #222;
+      border: 1px solid #f5c542;
+      border-radius: 12px;
+      width: 300px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid #f5c542;
+    }
+    .card-content {
+      padding: 1rem;
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .card-desc {
+      font-size: 0.95rem;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>نمونه‌کارها</h1>
+  </header>
+  <div class="container" id="projects-container">
+    <!-- Cards will be loaded here -->
+  </div>
+
+  <script>
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('projects-container');
+        data.forEach(project => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img src="${project.image}" alt="${project.title}" />
+            <div class="card-content">
+              <div class="card-title">${project.title}</div>
+              <div class="card-desc">${project.description}</div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(error => {
+        document.getElementById('projects-container').innerHTML = '<p style="color:red">خطا در بارگذاری اطلاعات.</p>';
+        console.error(error);
+      });
+  </script>
+</body>
+</html>
