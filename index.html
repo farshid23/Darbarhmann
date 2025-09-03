@@ -31,7 +31,7 @@ body{
 /* Header neon */
 header{
   position:relative;
-  padding:36px 16px 42px; /* کوچکتر شده */
+  padding:36px 16px 42px;
   text-align:center;
   border-bottom-left-radius:28px;
   border-bottom-right-radius:28px;
@@ -44,12 +44,12 @@ header:before{
   height:220%;
   background: radial-gradient(closest-side, rgba(255,63,110,.45), transparent 70%);
   filter:blur(28px);
-  z-index:1; /* زیر محتوا */
+  z-index:1;
 }
 h1{
   margin:0;
   font-weight:900;
-  font-size:1.9rem; /* قبلا 2.3rem بود */
+  font-size:1.9rem;
   letter-spacing:.5px;
   color:#ffb7d3;
   text-shadow:
@@ -67,8 +67,8 @@ h1{
 /* Search Box */
 .search-box{
   margin-top:16px;
-  position: relative; /* مهم برای روی لایه :before */
-  z-index: 2;           /* مهم */
+  position: relative;
+  z-index: 2;
 }
 .search-box input{
   padding:6px 10px;
@@ -124,6 +124,14 @@ h1{
 }
 .card:hover .avatar{ transform:rotate(3deg) scale(1.05); box-shadow:0 0 14px rgba(255,255,255,.4); }
 
+/* Bio */
+.bio{
+  font-size:0.75rem;
+  color: #fff; /* سفید */
+  margin-bottom:4px;
+  text-shadow:0 1px 3px rgba(0,0,0,0.5);
+}
+
 .name{
   font-size:1.05rem; font-weight:800; margin-bottom:12px;
   text-shadow:0 2px 10px rgba(0,0,0,.5);
@@ -168,22 +176,23 @@ footer{ height:24px }
 
 <script>
 const accounts = [
-  { link: "http://ba-ham.com/grouplink/093148683ba3cf05a39d1492641becee/", name: "گروه ما", img: "https://s6.uupload.ir/files/img_۲۰۲۵۰۹۰۳_۰۴۰۲۵۹_4y8t.jpg" },
-  { link: "http://ba-ham.com/-%D9%850%D9%85%D8%AF%3A%7C/", name: "ممد", img: "https://s6.uupload.ir/files/pictures_(4)_7mma.jpg" },
-  { link: "http://ba-ham.com/%D9%8BN%D9%90%D9%8EI%D9%8BL%D9%8E%D9%90A/", name: "NILA", img: "https://s6.uupload.ir/files/1756837736692_736x736_cg5e.jpg" },
-  { link: "http://ba-ham.com/%7B-%5B..V+A+R+U+N..%5D-%7D/", name: "《Yasna》", img: "https://s6.uupload.ir/files/1756836950366_720x892_nq5d.jpg" },
-  { link: "http://ba-ham.com/.%3AM+O+H+A+M+M+A+D%3A.+/", name: "MOHAMAD", img: "https://s6.uupload.ir/files/1756841798510_551x609_g56w.jpg" },
-  { link: "http://ba-ham.com/A.R.S.H.I.A%29/", name: "عرشیا", img: "https://s6.uupload.ir/files/1756335725801_1366x1366_9om8.jpg" },
-  { link: "http://ba-ham.com/%D9%91%D9%8F%D9%90%D9%8B%D9%8E%D9%8E%D9%8B%D9%90%D9%8F%D9%91/", name: "آیلین", img: "https://s6.uupload.ir/files/1756837503608_611x687_36u5.jpg" },
-  { link: "http://ba-ham.com/%5BNadi_aa%5D+/", name: "NADIA", img: "https://s6.uupload.ir/files/1756838602507_736x1308_p5wj.jpg" }
+  { link: "http://ba-ham.com/grouplink/093148683ba3cf05a39d1492641becee/", name: "گروه ما", img: "https://s6.uupload.ir/files/img_۲۰۲۵۰۹۰۳_۰۴۰۲۵۹_4y8t.jpg", bio: "گروهی برای دوستانه باهم بودن" },
+  { link: "http://ba-ham.com/-%D9%850%D9%85%D8%AF%3A%7C/", name: "ممد", img: "https://s6.uupload.ir/files/pictures_(4)_7mma.jpg", bio: "طراح و مدیر سایت" },
+  { link: "http://ba-ham.com/%D9%8BN%D9%90%D9%8EI%D9%8BL%D9%8E%D9%90A/", name: "NILA", img: "https://s6.uupload.ir/files/1756837736692_736x736_cg5e.jpg", bio: "دوستدار هنر و طبیعت" },
+  { link: "http://ba-ham.com/%7B-%5B..V+A+R+U+N..%5D-%7D/", name: "《Yasna》", img: "https://s6.uupload.ir/files/1756836950366_720x892_nq5d.jpg", bio: "دوستدار موسیقی و خلاقیت" },
+  { link: "http://ba-ham.com/.%3AM+O+H+A+M+M+A+D%3A.+/", name: "MOHAMAD", img: "https://s6.uupload.ir/files/1756841798510_551x609_g56w.jpg", bio: "عاشق برنامه‌نویسی" },
+  { link: "http://ba-ham.com/A.R.S.H.I.A%29/", name: "عرشیا", img: "https://s6.uupload.ir/files/1756335725801_1366x1366_9om8.jpg", bio: "علاقمند به سفر و عکاسی" },
+  { link: "http://ba-ham.com/%D9%91%D9%8F%D9%90%D9%8B%D9%8E%D9%8E%D9%8B%D9%90%D9%8F%D9%91/", name: "آیلین", img: "https://s6.uupload.ir/files/1756837503608_611x687_36u5.jpg", bio: "عاشق طبیعت و هنر" },
+  { link: "http://ba-ham.com/%5BNadi_aa%5D+/", name: "NADIA", img: "https://s6.uupload.ir/files/1756838602507_736x1308_p5wj.jpg", bio: "دوستدار مطالعه و فیلم" }
 ];
 
 const mount = document.getElementById('cards');
 
-function cardTemplate({link,name,img}){
+function cardTemplate({link,name,img,bio}){
   const el = document.createElement('div');
   el.className = 'card';
   el.innerHTML = `
+    <div class="bio">${bio || ''}</div>
     <img class="avatar" loading="lazy" src="${img}" alt="${name}">
     <div class="name">${name}</div>
     <button class="btn" type="button">باز کردن در باهم</button>
@@ -199,7 +208,7 @@ function cardTemplate({link,name,img}){
 mount.innerHTML = '';
 accounts.forEach(acc => mount.appendChild(cardTemplate(acc)));
 
-// Search functionality (flexible)
+// Search functionality
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const closeBtn = document.getElementById('closeBtn');
