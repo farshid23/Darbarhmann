@@ -44,6 +44,7 @@ header:before{
   height:220%;
   background: radial-gradient(closest-side, rgba(255,63,110,.45), transparent 70%);
   filter:blur(28px);
+  z-index:1; /* زیر محتوا */
 }
 h1{
   margin:0;
@@ -62,6 +63,31 @@ h1{
   opacity:.9;
   font-weight:700;
 }
+
+/* Search Box */
+.search-box{
+  margin-top:16px;
+  position: relative; /* مهم برای روی لایه :before */
+  z-index: 2;           /* مهم */
+}
+.search-box input{
+  padding:6px 10px;
+  border-radius:12px;
+  border:none;
+  outline:none;
+  width:180px;
+}
+.search-box button{
+  padding:6px 12px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  color:#fff;
+  margin-left:6px;
+  font-weight:700;
+}
+#searchBtn{ background: var(--pink2); }
+#closeBtn{ background: #aaa; }
 
 /* Grid */
 .wrap{
@@ -124,6 +150,13 @@ footer{ height:24px }
 <header>
   <h1>اکانت‌های دوستانه باهم</h1>
   <div class="subtitle">✨طراحی شده توسط ممد✨</div>
+
+  <!-- Search Box -->
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="نام اکانت را وارد کنید">
+    <button id="searchBtn">جستجو</button>
+    <button id="closeBtn">بستن</button>
+  </div>
 </header>
    
 
@@ -165,6 +198,32 @@ function cardTemplate({link,name,img}){
 
 mount.innerHTML = '';
 accounts.forEach(acc => mount.appendChild(cardTemplate(acc)));
+
+// Search functionality (flexible)
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+const closeBtn = document.getElementById('closeBtn');
+
+searchBtn.addEventListener('click', () => {
+  const query = searchInput.value.trim().toLowerCase().replace(/\s+/g,'');
+  const cards = document.querySelectorAll('.card');
+  let found = false;
+  cards.forEach(card => {
+    const name = card.querySelector('.name').textContent.toLowerCase().replace(/\s+/g,'');
+    if(name.includes(query) && query !== ""){
+      card.style.display = 'block';
+      found = true;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  if(!found && query !== "") alert("اکانتی پیدا نشد!");
+});
+
+closeBtn.addEventListener('click', () => {
+  document.querySelectorAll('.card').forEach(card => card.style.display = 'block');
+  searchInput.value = '';
+});
 </script>
 </body>
 </html>
